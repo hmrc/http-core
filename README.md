@@ -1,17 +1,16 @@
 //!@ TODO
 
-play-http-verbs
+http-core
 ==========
 
 [![Join the chat at https://gitter.im/hmrc/play-http-verbs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hmrc/play-http-verbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  [![Build Status](https://travis-ci.org/hmrc/play-http-verbs.svg)](https://travis-ci.org/hmrc/play-http-verbs) [ ![Download](https://api.bintray.com/packages/hmrc/releases/play-http-verbs/images/download.svg) ](https://bintray.com/hmrc/releases/play-http-verbs/_latestVersion)
 
-play-http-verbs is a Scala library providing an interface to make asynchronous HTTP calls.  The underlying implementation uses [Play WS](https://www.playframework.com/documentation/latest/ScalaWS).
+http-core is a Scala micro library providing a set of common concerns and classes that help fulfillment of asynchronous HTTP calls.
 
-It encapsulates some common concerns for calling other HTTP services on the HMRC Tax Platform, including:
-
-* ~~Auditing~~
+It encapsulates some common concerns required for making HTTP calls on the HMRC Tax Platform, including:
 * Logging
-* Propagation of common headers
+* Header Carrier
+* Http Transport
 * Response handling, converting failure status codes into a consistent set of exceptions - allows failures to be automatically propagated to the caller
 * Request & Response de-serialization
 
@@ -24,7 +23,7 @@ In your SBT build add:
 ```scala
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
-libraryDependencies += "uk.gov.hmrc" %% "http-verbs" % "x.x.x"
+libraryDependencies += "uk.gov.hmrc" %% "http-core" % "x.x.x"
 ```
 
 ## Usage

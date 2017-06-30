@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.http.logging
-
-import uk.gov.hmrc.http.HeaderNames
+package uk.gov.hmrc.http
 
 import scala.util.Random
+
 
 case class Authorization(value: String) extends AnyVal
 
