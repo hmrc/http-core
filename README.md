@@ -22,7 +22,7 @@ Unless your project is a library that implements the HTTP transport and Core HTT
   Instead, include libraries that provide concrete implementaion of the http transport and Core http functions (ie: both http-verbs and http-verbs-play-25) to get the full functionality.
 
   
-For a full example see [hmrc/http-verbs-example](https://github.com/hmrc/http-verbs-example)  
+All examples are available here:[hmrc/http-verbs-example](https://github.com/hmrc/http-verbs-example)  
 
 ## License ##
  
