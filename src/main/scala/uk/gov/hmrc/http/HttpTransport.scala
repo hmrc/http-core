@@ -20,16 +20,23 @@ import play.api.libs.json.Writes
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait HttpTransport {
-
+trait GetHttpTransport {
   def doGet(url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
+}
 
+trait DeleteHttpTransport {
   def doDelete(url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
+}
 
+trait PatchHttpTransport {
   def doPatch[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+}
 
+trait PutHttpTransport {
   def doPut[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+}
 
+trait PostHttpTransport {
   def doPost[A](url: String, body: A, headers: Seq[(String, String)])(implicit wts: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
 
   def doPostString(url: String, body: String, headers: Seq[(String, String)])(implicit hc: HeaderCarrier): Future[HttpResponse]
@@ -37,6 +44,25 @@ trait HttpTransport {
   def doEmptyPost[A](url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
 
   def doFormPost(url: String, body: Map[String, Seq[String]])(implicit hc: HeaderCarrier): Future[HttpResponse]
+}
+
+trait HttpTransport extends GetHttpTransport with DeleteHttpTransport with PatchHttpTransport with PutHttpTransport with PostHttpTransport {
+
+//  def doGet(url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
+
+//  def doDelete(url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
+
+//  def doPatch[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+
+//  def doPut[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+
+//  def doPost[A](url: String, body: A, headers: Seq[(String, String)])(implicit wts: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+//
+//  def doPostString(url: String, body: String, headers: Seq[(String, String)])(implicit hc: HeaderCarrier): Future[HttpResponse]
+//
+//  def doEmptyPost[A](url: String)(implicit hc: HeaderCarrier): Future[HttpResponse]
+//
+//  def doFormPost(url: String, body: Map[String, Seq[String]])(implicit hc: HeaderCarrier): Future[HttpResponse]
 
 }
 
