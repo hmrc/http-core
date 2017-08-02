@@ -30,6 +30,7 @@ object HmrcBuild extends Build {
       scalaVersion := "2.11.7",
       libraryDependencies ++= AppDependencies(),
       crossScalaVersions := Seq("2.11.7"),
+      version := "100.0-SNAPSHOT",
       resolvers := Seq(
         Resolver.bintrayRepo("hmrc", "releases")
       )
@@ -43,8 +44,7 @@ private object AppDependencies {
 
   val compile = Seq(
     "com.typesafe.play" %% "play-json" % playVersion,
-    "uk.gov.hmrc" %% "time" % "2.0.0",
-    "uk.gov.hmrc" %% "http-exceptions" % "1.0.0"
+    "uk.gov.hmrc" %% "time" % "2.0.0"
   )
 
 
