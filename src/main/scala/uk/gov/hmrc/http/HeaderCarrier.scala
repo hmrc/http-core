@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.http
 
+import uk.gov.hmrc.http.logging._
 
 
 case class UserId(value: String) extends AnyVal

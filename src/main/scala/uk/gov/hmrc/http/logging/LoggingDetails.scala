@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.http
+package uk.gov.hmrc.http.logging
+
+import uk.gov.hmrc.http._
 
 import scala.util.Random
 
