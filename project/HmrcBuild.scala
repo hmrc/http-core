@@ -30,7 +30,6 @@ object HmrcBuild extends Build {
       scalaVersion := "2.11.7",
       libraryDependencies ++= AppDependencies(),
       crossScalaVersions := Seq("2.11.7"),
-      version := "100.0-SNAPSHOT",
       resolvers := Seq(
         Resolver.bintrayRepo("hmrc", "releases")
       )
