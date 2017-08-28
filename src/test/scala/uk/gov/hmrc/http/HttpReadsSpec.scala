@@ -20,7 +20,6 @@ import org.scalacheck.Gen
 import org.scalatest.{Matchers, WordSpec}
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import play.api.libs.json.Json
-import uk.gov.hmrc.http.{HttpResponse, JsValidationException}
 
 class HttpReadsSpec extends WordSpec with GeneratorDrivenPropertyChecks with Matchers {
   "RawReads" should {
