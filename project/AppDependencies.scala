@@ -14,29 +14,9 @@
  * limitations under the License.
  */
 
-import sbt.Keys._
 import sbt._
-import uk.gov.hmrc.versioning.SbtGitVersioning
 
-object HmrcBuild extends Build {
-
-  import uk.gov.hmrc._
-
-  val appName = "http-core"
-
-  lazy val microservice = Project(appName, file("."))
-    .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
-    .settings(
-      scalaVersion := "2.11.8",
-      libraryDependencies ++= AppDependencies(),
-      crossScalaVersions := Seq("2.11.8"),
-      resolvers := Seq(
-        Resolver.bintrayRepo("hmrc", "releases")
-      )
-    )
-}
-
-private object AppDependencies {
+object AppDependencies {
 
 
   private val playVersion = "2.5.16"
@@ -46,13 +26,10 @@ private object AppDependencies {
     "uk.gov.hmrc" %% "time" % "2.0.0"
   )
 
-
   trait TestDependencies {
     lazy val scope: String = "test"
     lazy val test: Seq[ModuleID] = ???
   }
-
-
 
   object Test {
     def apply() = new TestDependencies {
