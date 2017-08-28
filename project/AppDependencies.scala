@@ -39,8 +39,8 @@ object AppDependencies {
         "org.scalacheck" %% "scalacheck" % "1.13.4" % scope,
         "org.pegdown" % "pegdown" % "1.6.0" % scope,
         "com.github.tomakehurst" % "wiremock" % "1.52" % scope,
-        "ch.qos.logback" % "logback-core" % "1.1.7",
-        "ch.qos.logback" % "logback-classic" % "1.1.7"
+        "ch.qos.logback" % "logback-core" % "1.1.7" % scope,
+        "ch.qos.logback" % "logback-classic" % "1.1.7" % scope
       )
     }.test
   }
