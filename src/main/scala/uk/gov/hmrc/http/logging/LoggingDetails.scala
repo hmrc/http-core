@@ -21,6 +21,8 @@ import uk.gov.hmrc.http._
 import scala.util.Random
 
 
+case class Authorization(value: String) extends AnyVal
+
 case class SessionId(value: String) extends AnyVal
 
 case class RequestId(value: String) extends AnyVal
