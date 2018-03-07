@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 HM Revenue & Customs
+ * Copyright 2018 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ import uk.gov.hmrc.http._
 
 import scala.util.Random
 
-
-case class Authorization(value: String) extends AnyVal
 
 case class SessionId(value: String) extends AnyVal
 
@@ -49,8 +47,6 @@ trait LoggingDetails {
 
   def requestChain: RequestChain
 
-  def authorization: Option[Authorization]
-
   def forwarded: Option[ForwardedFor]
 
   def age: Long
@@ -58,7 +54,6 @@ trait LoggingDetails {
   lazy val data = Map[String, Option[String]](
     (HeaderNames.xRequestId, requestId.map(_.value)),
     (HeaderNames.xSessionId, sessionId.map(_.value)),
-    (HeaderNames.authorisation, authorization.map(_.value)),
     (HeaderNames.xForwardedFor, forwarded.map(_.value)))
 
   def mdcData: Map[String, String] = for {

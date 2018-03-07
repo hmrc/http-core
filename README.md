@@ -8,7 +8,7 @@ http-core is a Scala micro library providing a set of common concerns and classe
 It encapsulates some common concerns required for making HTTP calls on the HMRC Tax Platform, including:
 * Logging
 * Header Carrier
-* Http Transport 
+* Http Transport
 * Core Http function interfaces
 
 
@@ -17,11 +17,11 @@ It encapsulates some common concerns required for making HTTP calls on the HMRC 
 #### Adding to your app
 
 Unless your project is a library that implements the HTTP transport and Core HTTP functions, this library should not be added to your project directly.
-  Instead, include libraries that provide concrete implementaion of the http transport and Core http functions (ie: both http-verbs and http-verbs-play-25) to get the full functionality.
+  Instead, include libraries that provide concrete implementation of the http transport and Core http functions (ie: both http-verbs and http-verbs-play-25) to get the full functionality.
 
-  
+
 All examples are available here:[hmrc/http-verbs-example](https://github.com/hmrc/http-verbs-example)  
 
 ## License ##
- 
+
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
