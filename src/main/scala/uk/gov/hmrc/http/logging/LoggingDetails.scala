@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 HM Revenue & Customs
+ * Copyright 2018 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,7 @@ trait LoggingDetails {
 
   def requestChain: RequestChain
 
+  @deprecated("Authorization header is no longer included in logging")
   def authorization: Option[Authorization]
 
   def forwarded: Option[ForwardedFor]
@@ -58,7 +59,6 @@ trait LoggingDetails {
   lazy val data = Map[String, Option[String]](
     (HeaderNames.xRequestId, requestId.map(_.value)),
     (HeaderNames.xSessionId, sessionId.map(_.value)),
-    (HeaderNames.authorisation, authorization.map(_.value)),
     (HeaderNames.xForwardedFor, forwarded.map(_.value)))
 
   def mdcData: Map[String, String] = for {
