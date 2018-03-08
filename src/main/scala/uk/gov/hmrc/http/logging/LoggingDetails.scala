@@ -49,6 +49,9 @@ trait LoggingDetails {
 
   def requestChain: RequestChain
 
+  @deprecated("Authorization header is no longer included in logging")
+  def authorization: Option[Authorization]
+
   def forwarded: Option[ForwardedFor]
 
   def age: Long
