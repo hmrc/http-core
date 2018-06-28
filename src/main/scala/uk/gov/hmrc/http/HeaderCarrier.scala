@@ -18,52 +18,54 @@ package uk.gov.hmrc.http
 
 import uk.gov.hmrc.http.logging._
 
-
 case class UserId(value: String) extends AnyVal
 
 case class Token(value: String) extends AnyVal
 
-case class HeaderCarrier(authorization: Option[Authorization] = None,
-                         userId: Option[UserId] = None,
-                         token: Option[Token] = None,
-                         forwarded: Option[ForwardedFor] = None,
-                         sessionId: Option[SessionId] = None,
-                         requestId: Option[RequestId] = None,
-                         requestChain: RequestChain = RequestChain.init,
-                         nsStamp: Long = System.nanoTime(),
-                         extraHeaders: Seq[(String, String)] = Seq(),
-                         trueClientIp: Option[String] = None,
-                         trueClientPort: Option[String] = None,
-                         gaToken: Option[String] = None,
-                         gaUserId: Option[String] = None,
-                         deviceID: Option[String] = None,
-                         akamaiReputation: Option[AkamaiReputation] = None,
-                         otherHeaders: Seq[(String, String)] = Seq()) extends  LoggingDetails with HeaderProvider {
+case class HeaderCarrier(
+  authorization: Option[Authorization]       = None,
+  userId: Option[UserId]                     = None,
+  token: Option[Token]                       = None,
+  forwarded: Option[ForwardedFor]            = None,
+  sessionId: Option[SessionId]               = None,
+  requestId: Option[RequestId]               = None,
+  requestChain: RequestChain                 = RequestChain.init,
+  nsStamp: Long                              = System.nanoTime(),
+  extraHeaders: Seq[(String, String)]        = Seq(),
+  trueClientIp: Option[String]               = None,
+  trueClientPort: Option[String]             = None,
+  gaToken: Option[String]                    = None,
+  gaUserId: Option[String]                   = None,
+  deviceID: Option[String]                   = None,
+  akamaiReputation: Option[AkamaiReputation] = None,
+  otherHeaders: Seq[(String, String)]        = Seq())
+    extends LoggingDetails
+    with HeaderProvider {
 
   /**
-   * @return the time, in nanoseconds, since this header carrier was created
-   */
+    * @return the time, in nanoseconds, since this header carrier was created
+    */
   def age = System.nanoTime() - nsStamp
 
   val names = HeaderNames
 
   lazy val headers: Seq[(String, String)] = {
-    List(requestId.map(rid => names.xRequestId -> rid.value),
-      sessionId.map(sid => names.xSessionId -> sid.value),
+    List(
+      requestId.map(rid => names.xRequestId  -> rid.value),
+      sessionId.map(sid => names.xSessionId  -> sid.value),
       forwarded.map(f => names.xForwardedFor -> f.value),
-      token.map(t => names.token -> t.value),
+      token.map(t => names.token             -> t.value),
       Some(names.xRequestChain -> requestChain.value),
       authorization.map(auth => names.authorisation -> auth.value),
-      trueClientIp.map(HeaderNames.trueClientIp -> _),
-      trueClientPort.map(HeaderNames.trueClientPort -> _),
-      gaToken.map(HeaderNames.googleAnalyticTokenId -> _),
-      gaUserId.map(HeaderNames.googleAnalyticUserId -> _),
-      deviceID.map(HeaderNames.deviceID -> _),
+      trueClientIp.map(HeaderNames.trueClientIp         -> _),
+      trueClientPort.map(HeaderNames.trueClientPort     -> _),
+      gaToken.map(HeaderNames.googleAnalyticTokenId     -> _),
+      gaUserId.map(HeaderNames.googleAnalyticUserId     -> _),
+      deviceID.map(HeaderNames.deviceID                 -> _),
       akamaiReputation.map(HeaderNames.akamaiReputation -> _.value)
     ).flatten ++ extraHeaders ++ otherHeaders
   }
 
-  def withExtraHeaders(headers:(String, String)*) : HeaderCarrier = {
+  def withExtraHeaders(headers: (String, String)*): HeaderCarrier =
     this.copy(extraHeaders = extraHeaders ++ headers)
-  }
 }

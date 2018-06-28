@@ -18,31 +18,31 @@ import sbt._
 
 object AppDependencies {
 
-
   private val playVersion = "2.5.16"
 
   val compile = Seq(
     "com.typesafe.play" %% "play-json" % playVersion,
-    "uk.gov.hmrc" %% "time" % "3.1.0"
+    "uk.gov.hmrc"       %% "time"      % "3.1.0"
   )
 
   trait TestDependencies {
-    lazy val scope: String = "test"
+    lazy val scope: String       = "test"
     lazy val test: Seq[ModuleID] = ???
   }
 
   object Test {
-    def apply() = new TestDependencies {
-      override lazy val test = Seq(
-        "commons-codec" % "commons-codec" % "1.7" % scope,
-        "org.scalatest" %% "scalatest" % "3.0.3" % scope,
-        "org.scalacheck" %% "scalacheck" % "1.13.4" % scope,
-        "org.pegdown" % "pegdown" % "1.6.0" % scope,
-        "com.github.tomakehurst" % "wiremock" % "1.52" % scope,
-        "ch.qos.logback" % "logback-core" % "1.1.7" % scope,
-        "ch.qos.logback" % "logback-classic" % "1.1.7" % scope
-      )
-    }.test
+    def apply() =
+      new TestDependencies {
+        override lazy val test = Seq(
+          "commons-codec"          % "commons-codec"   % "1.7"    % scope,
+          "org.scalatest"          %% "scalatest"      % "3.0.3"  % scope,
+          "org.scalacheck"         %% "scalacheck"     % "1.13.4" % scope,
+          "org.pegdown"            % "pegdown"         % "1.6.0"  % scope,
+          "com.github.tomakehurst" % "wiremock"        % "1.52"   % scope,
+          "ch.qos.logback"         % "logback-core"    % "1.1.7"  % scope,
+          "ch.qos.logback"         % "logback-classic" % "1.1.7"  % scope
+        )
+      }.test
   }
 
   def apply() = compile ++ Test()

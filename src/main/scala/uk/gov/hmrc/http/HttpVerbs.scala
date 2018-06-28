@@ -20,12 +20,12 @@ package uk.gov.hmrc.http
   * Standard HTTP Verbs
   */
 trait HttpVerbs {
-  val GET = "GET"
-  val POST = "POST"
-  val PUT = "PUT"
-  val PATCH = "PATCH"
-  val DELETE = "DELETE"
-  val HEAD = "HEAD"
+  val GET     = "GET"
+  val POST    = "POST"
+  val PUT     = "PUT"
+  val PATCH   = "PATCH"
+  val DELETE  = "DELETE"
+  val HEAD    = "HEAD"
   val OPTIONS = "OPTIONS"
 }
 

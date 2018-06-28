@@ -34,7 +34,7 @@ class JsPathEnrichmentSpec extends WordSpecLike with Matchers {
     "result in value when path exists" in new Setup {
       pathAndValueExistsJson.validate[Option[BigDecimal]] match {
         case s: JsSuccess[Option[BigDecimal]] => s.value shouldBe Some(BigDecimal("899.80"))
-        case e: JsError => fail(s"Should have parsed bigDecimal, failed with $e")
+        case e: JsError                       => fail(s"Should have parsed bigDecimal, failed with $e")
       }
     }
   }
@@ -45,8 +45,7 @@ class JsPathEnrichmentSpec extends WordSpecLike with Matchers {
 
     implicit val reads: Reads[Option[BigDecimal]] = (JsPath \ "rti" \ "balance").tolerantReadNullable[BigDecimal]
 
-    val pathDoesNotExistJson = Json.parse(
-      """
+    val pathDoesNotExistJson = Json.parse("""
         |{
         |	"nonRti": {
         |		"paidToDate": 200.25
@@ -54,8 +53,7 @@ class JsPathEnrichmentSpec extends WordSpecLike with Matchers {
         |}
       """.stripMargin)
 
-    val pathExistsAndValueMissingJson = Json.parse(
-      """
+    val pathExistsAndValueMissingJson = Json.parse("""
         |{
         |	"rti": {
         |		"notTheBalance": 123.45
@@ -63,8 +61,7 @@ class JsPathEnrichmentSpec extends WordSpecLike with Matchers {
         |}
       """.stripMargin)
 
-    val pathAndValueExistsJson = Json.parse(
-      """
+    val pathAndValueExistsJson = Json.parse("""
         |{
         |	"rti": {
         |		"balance": 899.80

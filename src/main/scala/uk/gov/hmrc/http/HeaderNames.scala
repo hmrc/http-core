@@ -18,7 +18,6 @@ package uk.gov.hmrc.http
 
 object HeaderNames {
 
-
   /*
    * this isn't ideal, but downstream apps still want to refer to typed header values
    * and guarantee their explicit whitelisting whilst "remaining headers" should avoid
@@ -27,21 +26,21 @@ object HeaderNames {
    * have to be done by magic number and would be susceptible to changes in ordering
    */
 
-  val authorisation = "Authorization"
-  val xForwardedFor = "x-forwarded-for"
-  val xRequestId =  "X-Request-ID"
-  val xRequestTimestamp = "X-Request-Timestamp"
-  val xSessionId = "X-Session-ID"
-  val xRequestChain = "X-Request-Chain"
-  val trueClientIp = "True-Client-IP"
-  val trueClientPort = "True-Client-Port"
-  val token = "token"
-  val surrogate = "Surrogate"
-  val otacAuthorization = "Otac-Authorization"
+  val authorisation         = "Authorization"
+  val xForwardedFor         = "x-forwarded-for"
+  val xRequestId            = "X-Request-ID"
+  val xRequestTimestamp     = "X-Request-Timestamp"
+  val xSessionId            = "X-Session-ID"
+  val xRequestChain         = "X-Request-Chain"
+  val trueClientIp          = "True-Client-IP"
+  val trueClientPort        = "True-Client-Port"
+  val token                 = "token"
+  val surrogate             = "Surrogate"
+  val otacAuthorization     = "Otac-Authorization"
   val googleAnalyticTokenId = "ga-token"
   val googleAnalyticUserId  = "ga-user-cookie-id"
-  val deviceID  = "deviceID" // not a typo, should be ID
-  val akamaiReputation = "Akamai-Reputation"
+  val deviceID              = "deviceID" // not a typo, should be ID
+  val akamaiReputation      = "Akamai-Reputation"
 
   val explicitlyIncludedHeaders = Seq(
     authorisation,
@@ -68,27 +67,27 @@ object CookieNames {
 
 object SessionKeys {
   val sessionId = "sessionId"
-  val userId = "userId"
-  @deprecated("To be removed. Use internal services lookup instead","2016-06-24")
+  val userId    = "userId"
+  @deprecated("To be removed. Use internal services lookup instead", "2016-06-24")
   val name = "name"
-  @deprecated("To be removed. Use internal services lookup instead","2016-06-24")
+  @deprecated("To be removed. Use internal services lookup instead", "2016-06-24")
   val email = "email"
-  @deprecated("To be removed. Use internal services lookup instead","2016-06-24")
+  @deprecated("To be removed. Use internal services lookup instead", "2016-06-24")
   val agentName = "agentName"
-  @deprecated("Use internal services lookup instead","2016-06-24")
-  val token = "token"
+  @deprecated("Use internal services lookup instead", "2016-06-24")
+  val token     = "token"
   val authToken = "authToken"
   val otacToken = "otacToken"
-  @deprecated("Use internal services lookup instead","2016-06-24")
+  @deprecated("Use internal services lookup instead", "2016-06-24")
   val affinityGroup = "affinityGroup"
-  @deprecated("Use internal services lookup instead","2016-06-24")
-  val authProvider = "ap"
+  @deprecated("Use internal services lookup instead", "2016-06-24")
+  val authProvider         = "ap"
   val lastRequestTimestamp = "ts"
-  val redirect = "login_redirect"
-  val npsVersion = "nps-version"
-  val sensitiveUserId = "suppressUserIs"
-  val postLogoutPage = "postLogoutPage"
-  val loginOrigin = "loginOrigin"
-  val portalRedirectUrl = "portalRedirectUrl"
-  val portalState = "portalState"
+  val redirect             = "login_redirect"
+  val npsVersion           = "nps-version"
+  val sensitiveUserId      = "suppressUserIs"
+  val postLogoutPage       = "postLogoutPage"
+  val loginOrigin          = "loginOrigin"
+  val portalRedirectUrl    = "portalRedirectUrl"
+  val portalState          = "portalState"
 }

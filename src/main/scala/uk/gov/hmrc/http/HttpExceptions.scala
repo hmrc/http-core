@@ -20,36 +20,36 @@ import HttpExceptions._
 
 private object HttpExceptions {
 
-  val BAD_REQUEST = 400
-  val UNAUTHORIZED = 401
-  val PAYMENT_REQUIRED = 402
-  val FORBIDDEN = 403
-  val NOT_FOUND = 404
-  val METHOD_NOT_ALLOWED = 405
-  val NOT_ACCEPTABLE = 406
-  val PROXY_AUTHENTICATION_REQUIRED = 407
-  val REQUEST_TIMEOUT = 408
-  val CONFLICT = 409
-  val GONE = 410
-  val LENGTH_REQUIRED = 411
-  val PRECONDITION_FAILED = 412
-  val REQUEST_ENTITY_TOO_LARGE = 413
-  val REQUEST_URI_TOO_LONG = 414
-  val UNSUPPORTED_MEDIA_TYPE = 415
+  val BAD_REQUEST                     = 400
+  val UNAUTHORIZED                    = 401
+  val PAYMENT_REQUIRED                = 402
+  val FORBIDDEN                       = 403
+  val NOT_FOUND                       = 404
+  val METHOD_NOT_ALLOWED              = 405
+  val NOT_ACCEPTABLE                  = 406
+  val PROXY_AUTHENTICATION_REQUIRED   = 407
+  val REQUEST_TIMEOUT                 = 408
+  val CONFLICT                        = 409
+  val GONE                            = 410
+  val LENGTH_REQUIRED                 = 411
+  val PRECONDITION_FAILED             = 412
+  val REQUEST_ENTITY_TOO_LARGE        = 413
+  val REQUEST_URI_TOO_LONG            = 414
+  val UNSUPPORTED_MEDIA_TYPE          = 415
   val REQUESTED_RANGE_NOT_SATISFIABLE = 416
-  val EXPECTATION_FAILED = 417
-  val UNPROCESSABLE_ENTITY = 422
-  val LOCKED = 423
-  val FAILED_DEPENDENCY = 424
-  val TOO_MANY_REQUEST = 429
+  val EXPECTATION_FAILED              = 417
+  val UNPROCESSABLE_ENTITY            = 422
+  val LOCKED                          = 423
+  val FAILED_DEPENDENCY               = 424
+  val TOO_MANY_REQUEST                = 429
 
-  val INTERNAL_SERVER_ERROR = 500
-  val NOT_IMPLEMENTED = 501
-  val BAD_GATEWAY = 502
-  val SERVICE_UNAVAILABLE = 503
-  val GATEWAY_TIMEOUT = 504
+  val INTERNAL_SERVER_ERROR      = 500
+  val NOT_IMPLEMENTED            = 501
+  val BAD_GATEWAY                = 502
+  val SERVICE_UNAVAILABLE        = 503
+  val GATEWAY_TIMEOUT            = 504
   val HTTP_VERSION_NOT_SUPPORTED = 505
-  val INSUFFICIENT_STORAGE = 507
+  val INSUFFICIENT_STORAGE       = 507
 }
 
 class HttpException(val message: String, val responseCode: Int) extends Exception(message)
@@ -69,7 +69,8 @@ class MethodNotAllowedException(message: String) extends HttpException(message, 
 
 class NotAcceptableException(message: String) extends HttpException(message, NOT_ACCEPTABLE)
 
-class ProxyAuthenticationRequiredException(message: String) extends HttpException(message, PROXY_AUTHENTICATION_REQUIRED)
+class ProxyAuthenticationRequiredException(message: String)
+    extends HttpException(message, PROXY_AUTHENTICATION_REQUIRED)
 
 class RequestTimeoutException(message: String) extends HttpException(message, REQUEST_TIMEOUT)
 
@@ -87,7 +88,8 @@ class RequestUriTooLongException(message: String) extends HttpException(message,
 
 class UnsupportedMediaTypeException(message: String) extends HttpException(message, UNSUPPORTED_MEDIA_TYPE)
 
-class RequestRangeNotSatisfiableException(message: String) extends HttpException(message, REQUESTED_RANGE_NOT_SATISFIABLE)
+class RequestRangeNotSatisfiableException(message: String)
+    extends HttpException(message, REQUESTED_RANGE_NOT_SATISFIABLE)
 
 class ExpectationFailedException(message: String) extends HttpException(message, EXPECTATION_FAILED)
 
@@ -117,6 +119,11 @@ class HttpVersionNotSupportedException(message: String) extends HttpException(me
 
 class InsufficientStorageException(message: String) extends HttpException(message, INSUFFICIENT_STORAGE)
 
-case class Upstream4xxResponse(message: String, upstreamResponseCode: Int, reportAs: Int, headers:Map[String, Seq[String]] = Map.empty) extends Exception(message)
+case class Upstream4xxResponse(
+  message: String,
+  upstreamResponseCode: Int,
+  reportAs: Int,
+  headers: Map[String, Seq[String]] = Map.empty)
+    extends Exception(message)
 
 case class Upstream5xxResponse(message: String, upstreamResponseCode: Int, reportAs: Int) extends Exception(message)

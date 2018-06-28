@@ -18,7 +18,6 @@ package uk.gov.hmrc.http.controllers
 
 import play.api.libs.json._
 
-
 object JsPathEnrichment {
 
   implicit class RichJsPath(jsPath: JsPath) {
@@ -28,16 +27,20 @@ object JsPathEnrichment {
     def tolerantReadNullable[T](implicit r: Reads[T]): Reads[Option[T]] = tolerantReadNullable(jsPath)(r)
 
     private def tolerantReadNullable[A](path: JsPath)(implicit reads: Reads[A]) = Reads[Option[A]] { json =>
-      path.applyTillLast(json).fold(
-        jsError => JsSuccess(None),
-        jsResult => jsResult.fold(
-          _ => JsSuccess(None),
-          a => a match {
-            case JsNull => JsSuccess(None)
-            case js => reads.reads(js).repath(path).map(Some(_))
-          }
+      path
+        .applyTillLast(json)
+        .fold(
+          jsError => JsSuccess(None),
+          jsResult =>
+            jsResult.fold(
+              _ => JsSuccess(None),
+              a =>
+                a match {
+                  case JsNull => JsSuccess(None)
+                  case js     => reads.reads(js).repath(path).map(Some(_))
+              }
+          )
         )
-      )
     }
   }
 }

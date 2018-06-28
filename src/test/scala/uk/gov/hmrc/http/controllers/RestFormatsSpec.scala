@@ -24,7 +24,7 @@ class RestFormatsSpec extends WordSpecLike with Matchers {
   "localDateTimeRead" should {
     "return a LocalDateTime for correctly formatted JsString" in {
       val testDate = new LocalDateTime(0)
-      val jsValue = RestFormats.localDateTimeWrite.writes(testDate)
+      val jsValue  = RestFormats.localDateTimeWrite.writes(testDate)
 
       val JsSuccess(result, _) = RestFormats.localDateTimeRead.reads(jsValue)
       result shouldBe testDate
@@ -42,7 +42,7 @@ class RestFormatsSpec extends WordSpecLike with Matchers {
   "dateTimeRead" should {
     "return a DateTime in zone UTC for correctly formatted JsString" in {
       val testDate = new DateTime(0)
-      val jsValue = RestFormats.dateTimeWrite.writes(testDate)
+      val jsValue  = RestFormats.dateTimeWrite.writes(testDate)
 
       val JsSuccess(result, _) = RestFormats.dateTimeRead.reads(jsValue)
       result shouldBe testDate.withZone(DateTimeZone.UTC)
@@ -59,10 +59,10 @@ class RestFormatsSpec extends WordSpecLike with Matchers {
 
   "localDateRead" should {
     "return a LocalDate in zone UTC for correctly formatted JsString" in {
-      val json = JsString("1994-05-01")
+      val json         = JsString("1994-05-01")
       val expectedDate = new LocalDate(1994, 5, 1)
 
-      val JsSuccess(result, _) =RestFormats.localDateRead.reads(json)
+      val JsSuccess(result, _) = RestFormats.localDateRead.reads(json)
       result shouldBe expectedDate
     }
 

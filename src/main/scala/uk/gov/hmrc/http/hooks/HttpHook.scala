@@ -21,5 +21,7 @@ import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse}
 import scala.concurrent.{ExecutionContext, Future}
 
 trait HttpHook {
-  def apply(url: String, verb: String, body: Option[_], responseF: Future[HttpResponse])(implicit hc: HeaderCarrier, ec: ExecutionContext)
+  def apply(url: String, verb: String, body: Option[_], responseF: Future[HttpResponse])(
+    implicit hc: HeaderCarrier,
+    ec: ExecutionContext)
 }

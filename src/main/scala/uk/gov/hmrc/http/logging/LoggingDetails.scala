@@ -20,7 +20,6 @@ import uk.gov.hmrc.http._
 
 import scala.util.Random
 
-
 case class Authorization(value: String) extends AnyVal
 
 case class SessionId(value: String) extends AnyVal
@@ -61,8 +60,9 @@ trait LoggingDetails {
     (HeaderNames.xSessionId, sessionId.map(_.value)),
     (HeaderNames.xForwardedFor, forwarded.map(_.value)))
 
-  def mdcData: Map[String, String] = for {
-    d <- data
-    v <- d._2
-  } yield (d._1, v)
+  def mdcData: Map[String, String] =
+    for {
+      d <- data
+      v <- d._2
+    } yield (d._1, v)
 }

@@ -19,15 +19,17 @@ package uk.gov.hmrc.http
 import play.api.libs.json.{JsValue, Json}
 
 /**
- * The ws.Response class is very hard to dummy up as it wraps a concrete instance of
- * the ning http Response. This trait exposes just the bits of the response that we
- * need in methods that we are passing the response to for processing, making it
- * much easier to provide dummy data in our specs.
- */
+  * The ws.Response class is very hard to dummy up as it wraps a concrete instance of
+  * the ning http Response. This trait exposes just the bits of the response that we
+  * need in methods that we are passing the response to for processing, making it
+  * much easier to provide dummy data in our specs.
+  */
 trait HttpResponse {
   def allHeaders: Map[String, Seq[String]] = ???
 
-  def header(key: String) : Option[String] = allHeaders.get(key).flatMap { list => list.headOption }
+  def header(key: String): Option[String] = allHeaders.get(key).flatMap { list =>
+    list.headOption
+  }
 
   def status: Int = ???
 
@@ -37,11 +39,15 @@ trait HttpResponse {
 }
 
 object HttpResponse {
-  def apply(responseStatus: Int, responseJson: Option[JsValue] = None, responseHeaders: Map[String, Seq[String]] = Map.empty, responseString: Option[String] = None) = new HttpResponse {
+  def apply(
+    responseStatus: Int,
+    responseJson: Option[JsValue]             = None,
+    responseHeaders: Map[String, Seq[String]] = Map.empty,
+    responseString: Option[String]            = None) = new HttpResponse {
     override def allHeaders: Map[String, Seq[String]] = responseHeaders
-    override def body: String = responseString orElse responseJson.map(Json.prettyPrint) orNull
-    override def json: JsValue = responseJson.orNull
-    override def status: Int = responseStatus
+    override def body: String                         = responseString orElse responseJson.map(Json.prettyPrint) orNull
+    override def json: JsValue                        = responseJson.orNull
+    override def status: Int                          = responseStatus
   }
 
   def unapply(that: HttpResponse) = Some(that.status, that.json, that.allHeaders, that.body)
