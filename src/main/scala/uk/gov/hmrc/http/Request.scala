@@ -16,11 +16,7 @@
 
 package uk.gov.hmrc.http
 
-import com.typesafe.config.Config
-
 trait Request {
-
-  def configuration: Option[Config]
 
   def applicableHeaders(url: String)(implicit hc: HeaderCarrier): Seq[(String, String)]
 }
