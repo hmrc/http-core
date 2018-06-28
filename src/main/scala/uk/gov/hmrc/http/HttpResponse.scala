@@ -50,5 +50,5 @@ object HttpResponse {
     override def status: Int                          = responseStatus
   }
 
-  def unapply(that: HttpResponse) = Some(that.status, that.json, that.allHeaders, that.body)
+  def unapply(that: HttpResponse) = Some((that.status, that.json, that.allHeaders, that.body))
 }

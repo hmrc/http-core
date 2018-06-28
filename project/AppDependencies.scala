@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 HM Revenue & Customs
+ * Copyright 2018 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +18,17 @@ import sbt._
 
 object AppDependencies {
 
-  private val playVersion = "2.5.16"
-
   val compile = Seq(
-    "com.typesafe.play" %% "play-json" % playVersion,
-    "uk.gov.hmrc"       %% "time"      % "3.1.0"
+    "com.typesafe.play" %% "play-json" % "2.5.16"
   )
 
-  trait TestDependencies {
-    lazy val scope: String       = "test"
-    lazy val test: Seq[ModuleID] = ???
-  }
-
-  object Test {
-    def apply() =
-      new TestDependencies {
-        override lazy val test = Seq(
-          "commons-codec"          % "commons-codec"   % "1.7"    % scope,
-          "org.scalatest"          %% "scalatest"      % "3.0.3"  % scope,
-          "org.scalacheck"         %% "scalacheck"     % "1.13.4" % scope,
-          "org.pegdown"            % "pegdown"         % "1.6.0"  % scope,
-          "com.github.tomakehurst" % "wiremock"        % "1.52"   % scope,
-          "ch.qos.logback"         % "logback-core"    % "1.1.7"  % scope,
-          "ch.qos.logback"         % "logback-classic" % "1.1.7"  % scope
-        )
-      }.test
-  }
-
-  def apply() = compile ++ Test()
+  val test = Seq(
+    "commons-codec"          % "commons-codec"   % "1.7"    % Test,
+    "org.scalatest"          %% "scalatest"      % "3.0.3"  % Test,
+    "org.scalacheck"         %% "scalacheck"     % "1.13.4" % Test,
+    "org.pegdown"            % "pegdown"         % "1.6.0"  % Test,
+    "com.github.tomakehurst" % "wiremock"        % "1.52"   % Test,
+    "ch.qos.logback"         % "logback-core"    % "1.1.7"  % Test,
+    "ch.qos.logback"         % "logback-classic" % "1.1.7"  % Test
+  )
 }

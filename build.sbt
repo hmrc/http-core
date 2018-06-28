@@ -1,16 +1,18 @@
-import uk.gov.hmrc.DefaultBuildSettings.{defaultSettings, targetJvm}
+import sbt.Keys.crossScalaVersions
 
-enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
+val name = "http-core"
 
-name := "http-core"
-
-scalaVersion := "2.11.8"
-crossScalaVersions := Seq("2.11.8")
-targetJvm := "jvm-1.8"
-
-libraryDependencies ++= AppDependencies()
-
-resolvers := Seq(
-  Resolver.bintrayRepo("hmrc", "releases"),
-  Resolver.typesafeRepo("releases")
-)
+lazy val library = Project(name, file("."))
+  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
+  .settings(
+    scalaVersion        := "2.11.12",
+    crossScalaVersions  := Seq("2.11.12"),
+    libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
+    scalacOptions       ++= Seq("-deprecation"),
+    resolvers           :=
+      Seq(
+        Resolver.bintrayRepo("hmrc", "releases"),
+        Resolver.typesafeRepo("releases")
+      )
+  )
+  .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
