@@ -1,5 +1,4 @@
 import sbt.Keys.crossScalaVersions
-import uk.gov.hmrc.versioning.SbtGitVersioning.majorVersion
 
 val name = "http-core"
 
