@@ -16,9 +16,15 @@
 
 import sbt._
 
-object AppDependencies {
+object AppDeps {
 
-  val compile = Seq(
+  val playJson25 = Seq(
+    "com.typesafe.play" %% "play-json" % "2.5.16"
+  )
+
+  val shared = playJson25
+
+  val playJson26 = Seq(
     "com.typesafe.play" %% "play-json" % "2.6.9"
   )
 
