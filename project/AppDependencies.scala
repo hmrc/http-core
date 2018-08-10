@@ -18,9 +18,7 @@ import sbt._
 
 object AppDependencies {
 
-  val compile = Seq(
-    "com.typesafe.play" %% "play-json" % "2.6.9"
-  )
+  val compile = Seq()
 
   val test = Seq(
     "commons-codec"          % "commons-codec"   % "1.7"    % Test,
@@ -29,6 +27,7 @@ object AppDependencies {
     "org.pegdown"            % "pegdown"         % "1.6.0"  % Test,
     "com.github.tomakehurst" % "wiremock"        % "1.52"   % Test,
     "ch.qos.logback"         % "logback-core"    % "1.1.7"  % Test,
-    "ch.qos.logback"         % "logback-classic" % "1.1.7"  % Test
+    "ch.qos.logback"         % "logback-classic" % "1.1.7"  % Test,
+    "com.typesafe.play"      %% "play-json"      % "2.6.9"  % Test
   )
 }

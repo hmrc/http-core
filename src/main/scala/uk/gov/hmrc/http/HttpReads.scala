@@ -16,10 +16,7 @@
 
 package uk.gov.hmrc.http
 
-import play.api.libs.json
-import play.api.libs.json.{JsNull, JsValue}
-
-object HttpReads extends OptionHttpReads with JsonHttpReads {
+object HttpReads extends OptionHttpReads {
   // readRaw is brought in like this rather than in a trait as this gives it
   // compilation priority during implicit resolution. This means, unless
   // specified otherwise a verb call will return a plain HttpResponse
@@ -45,27 +42,4 @@ trait OptionHttpReads extends HttpErrorFunctions {
       case _         => Some(rds.read(method, url, response))
     }
   }
-}
-
-trait JsonHttpReads extends HttpErrorFunctions {
-  implicit def readFromJson[O](implicit rds: json.Reads[O], mf: Manifest[O]): HttpReads[O] = new HttpReads[O] {
-    def read(method: String, url: String, response: HttpResponse) =
-      readJson(method, url, handleResponse(method, url)(response).json)
-  }
-
-  def readSeqFromJsonProperty[O](name: String)(implicit rds: json.Reads[O], mf: Manifest[O]) = new HttpReads[Seq[O]] {
-    def read(method: String, url: String, response: HttpResponse) = response.status match {
-      case 204 | 404 => Seq.empty
-      case _ =>
-        readJson[Seq[O]](method, url, (handleResponse(method, url)(response).json \ name).getOrElse(JsNull)) //Added JsNull here to force validate to fail - replicates existing behaviour
-    }
-  }
-
-  private def readJson[A](method: String, url: String, jsValue: JsValue)(implicit rds: json.Reads[A], mf: Manifest[A]) =
-    jsValue
-      .validate[A]
-      .fold(
-        errs => throw new JsValidationException(method, url, mf.runtimeClass, errs.toString()),
-        valid => valid
-      )
 }

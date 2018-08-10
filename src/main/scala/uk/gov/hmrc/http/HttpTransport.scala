@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.http
 
-import play.api.libs.json.Writes
-
 import scala.concurrent.{ExecutionContext, Future}
 
 trait GetHttpTransport {
@@ -29,16 +27,16 @@ trait DeleteHttpTransport {
 }
 
 trait PatchHttpTransport {
-  def doPatch[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+  def doPatch[A](url: String, body: A)(implicit wts: HttpWrites[A], hc: HeaderCarrier): Future[HttpResponse]
 }
 
 trait PutHttpTransport {
-  def doPut[A](url: String, body: A)(implicit rds: Writes[A], hc: HeaderCarrier): Future[HttpResponse]
+  def doPut[A](url: String, body: A)(implicit wts: HttpWrites[A], hc: HeaderCarrier): Future[HttpResponse]
 }
 
 trait PostHttpTransport {
   def doPost[A](url: String, body: A, headers: Seq[(String, String)])(
-    implicit wts: Writes[A],
+    implicit wts: HttpWrites[A],
     hc: HeaderCarrier): Future[HttpResponse]
 
   def doPostString(url: String, body: String, headers: Seq[(String, String)])(
@@ -70,19 +68,19 @@ trait CoreDelete {
 trait CorePatch {
   def PATCH[I, O](
     url: String,
-    body: I)(implicit wts: Writes[I], rds: HttpReads[O], hc: HeaderCarrier, ec: ExecutionContext): Future[O]
+    body: I)(implicit wts: HttpWrites[I], rds: HttpReads[O], hc: HeaderCarrier, ec: ExecutionContext): Future[O]
 }
 
 trait CorePut {
   def PUT[I, O](
     url: String,
-    body: I)(implicit wts: Writes[I], rds: HttpReads[O], hc: HeaderCarrier, ec: ExecutionContext): Future[O]
+    body: I)(implicit wts: HttpWrites[I], rds: HttpReads[O], hc: HeaderCarrier, ec: ExecutionContext): Future[O]
 }
 
 trait CorePost {
 
   def POST[I, O](url: String, body: I, headers: Seq[(String, String)] = Seq.empty)(
-    implicit wts: Writes[I],
+    implicit wts: HttpWrites[I],
     rds: HttpReads[O],
     hc: HeaderCarrier,
     ec: ExecutionContext): Future[O]
