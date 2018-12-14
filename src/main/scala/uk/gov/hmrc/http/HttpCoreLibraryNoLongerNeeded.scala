@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.http.hooks
+package uk.gov.hmrc.http
 
-import uk.gov.hmrc.http.{HeaderCarrier, HttpResponse}
-
-import scala.concurrent.{ExecutionContext, Future}
-
-trait HttpHook {
-  def apply(url: String, verb: String, body: Option[_], responseF: Future[HttpResponse])(
-    implicit hc: HeaderCarrier,
-    ec: ExecutionContext)
-}
+/*
+ *  http-core has been merged into http-verbs
+ */
+private class HttpCoreLibraryNoLongerNeeded
