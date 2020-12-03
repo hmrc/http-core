@@ -1,7 +1,7 @@
 http-core
 ==========
 
-[![Build Status](https://travis-ci.org/hmrc/http-core.svg)](https://travis-ci.org/hmrc/http-core) [ ![Download](https://api.bintray.com/packages/hmrc/releases/http-core/images/download.svg) ](https://bintray.com/hmrc/releases/http-core/_latestVersion)
+
 
 ## This library is deprecated
 ### All classes from this library have been copied to http-verbs starting from version 8.5.0. Some time ago http-verbs was split into three libraries: http-core (meant to be play-independent), http-verbs (play independent) and http-verbs-play-25 (with a dependency on play). Unfortunately http-core still contained play-json which is not binary compatibile between play 2.5 and 2.6. This means that libraries compiled against http-core could fail at runtime when used with a microservice using play 2.6. A decision was made to collapse all the classess from http-core, http-verbs and http-verbs-play-25 and only keep one single library: http-verbs. It will be available for both Play 2.5 and Play 2.6.
